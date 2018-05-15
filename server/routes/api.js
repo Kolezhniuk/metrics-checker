@@ -50,7 +50,7 @@ router.post('/getMetrics', (req, res) => {
 router.post('/obtaincode', (req, res) => {
   const code = req.body.code;
   const result = metrics.getHalsetadMetrics('testName', code);
-  res.send(200).json(result)
+  res.send(200).json(result);
 });
 
 module.exports = router;

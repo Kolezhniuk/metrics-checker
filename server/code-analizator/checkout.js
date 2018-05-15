@@ -1,11 +1,11 @@
-let svnUltimate = require('node-svn-ultimate');
+const svnUltimate = require('node-svn-ultimate');
 
 class SvnCheckoutWrapper {
     static checkout() {
         const options = {	// optional options object - can be passed to any command not just update
             // trustServerCert: true,	// same as --trust-server-cert
             username: "dim12305",	// same as --username
-            password: "23059696d",	// same as --password
+            password: "********",	// same as --password
             shell: "sh", 			// override shell used to execute command
             cwd: process.cwd(),		// override working directory command is executed
             quiet: true,			// provide --quiet to commands that accept it
