@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const elastic = require('../code-analizator/index');
-const metrics = require('../code-analizator/metrics');
+const elastic = require('../code-analizator/elastic');
+const jsMetrics = require('../code-analizator/metrics-js');
+const cssMetrics =require('../code-analizator/metric-css');
 
 // declare axios for making http requests
 // const axios = require('axios');
@@ -38,18 +39,25 @@ router.get('/', (req, res) => {
 // });
 
 
-router.post('/getMetrics', (req, res) => {
+router.post('/getMetrics/js', (req, res) => {
 
-  const metric = metrics.calculateHalsetadMetrics(req.body.code);
+  const metric = jsMetrics.calculateHalsetadMetrics(req.body.code);
   if (metric) {
     return res.json(metric);
   }
   return res.send("Metric calculation error");
 });
 
+router.post('/getMetrics/css', (req, res) => {
+
+    cssMetrics.CSSAnalyzer.analyze(req.body.code)
+        .then(data => res.status(200).json(data))
+        .catch(err => res.send(err, 500));
+});
+
 router.post('/obtaincode', (req, res) => {
   const code = req.body.code;
-  const result = metrics.getHalsetadMetrics('testName', code);
+  const result = jsMetrics.getHalsetadMetrics('testName', code);
   res.send(200).json(result);
 });
 

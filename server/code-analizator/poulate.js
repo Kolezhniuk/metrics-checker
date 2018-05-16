@@ -1,4 +1,4 @@
-const wrapper = require('./index');
+const wrapper = require('./elastic');
 
 const config = {
     usePopulation: true,

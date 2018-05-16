@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable()
 export class MetricsService {
@@ -13,14 +13,15 @@ export class MetricsService {
             'Content-Type': 'application/json'
         });
         const reqOption = {headers: headers};
-        return this.http.post('http://localhost:3000/api/getMetrics', {code: code}, reqOption);
+        return this.http.post('http://localhost:3000/api/getMetrics/css', {code: code}, reqOption);
     }
 
     obtainCode(data: string) {
-        const headers = new Headers({
+        const headers = new HttpHeaders({
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         });
-        return this.http.post('http://localhost:3000/api/obtaincode', {code: data}, {headers: headers});
+        const reqOption = {headers: headers};
+        return this.http.post('http://localhost:3000/api/obtaincode', {code: data}, reqOption);
     }
 }

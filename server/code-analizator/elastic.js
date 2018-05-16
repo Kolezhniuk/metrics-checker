@@ -1,5 +1,5 @@
 const fileUtils = require('./data-preparation');
-const metricsCalculator = require('./metrics');
+const metricsCalculator = require('./metrics-js');
 const elasticsearch = require('elasticsearch');
 const bluebird = require('bluebird');
 const fileWalker = bluebird.promisify(fileUtils.filewalker);

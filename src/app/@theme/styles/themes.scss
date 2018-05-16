@@ -9,9 +9,9 @@ $nb-enabled-themes: (default, cosmic);
 $nb-themes: nb-register-theme((
   // app wise variables for each theme
   sidebar-header-gap: 0,
-  color-bg: #e3e3e3,
-  scrollbar-bg: #808080,
-  layout-bg:  #eceff5,
+  //color-bg:   #eceff5,
+  //scrollbar-bg: #808080,
+  //layout-bg: #e3e3e3,
 
   footer-height: 3.5rem,
   font-main: Roboto,
@@ -26,3 +26,15 @@ $nb-themes: nb-register-theme((
   font-main: Roboto,
   font-secondary: Exo,
 ), cosmic, cosmic);
+
+
+@include nb-install-component() {
+
+  nb-card-body {
+    overflow: visible;
+  }
+
+  .input-group {
+    margin-bottom: 1rem;
+  }
+}

@@ -1,26 +1,36 @@
-<div class="row">
-<h1>world</h1>
-  <div class="row">
-    <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
+<div class="container-fluid p-0 content-row">
+    <div class="row border-danger" *ngIf="error">
+        <div class="col-12 text-center text-danger pb-3">
+            <div class="card border-danger">
+                <div class="card-header">Error</div>
+            </div>
+        </div>
     </div>
-
-    <div class="col-xxxl-9 col-xxl-8 col-lg-7 col-md-6">
+    <div class="row">
+        <div class="col-6">
+            <nb-card>
+                <nb-card-header>Code:</nb-card-header>
+                <nb-card-body>
+                    <div class="input-group">
+                        <textarea rows="15"
+                                  [(ngModel)]="code"
+                                  placeholder="Code Here"
+                                  class="form-control">
+                        </textarea>
+                    </div>
+                    <button class="btn btn-sm btn-success text-center"
+                            (click)="onGetMetricsCLick()">Get Metric
+                    </button>
+                </nb-card-body>
+            </nb-card>
+        </div>
+        <div class="col-6 h-100">
+            <nb-card>
+                <nb-card-header>Metrics:</nb-card-header>
+                <nb-card-body *ngIf="isLoaded">
+                    <ngx-json-viewer [json]="metrics"></ngx-json-viewer>
+                </nb-card-body>
+            </nb-card>
+        </div>
     </div>
-  </div>
-
-  <div class="row">
-    <div class="col-xxxl-9 col-xl-12">
-    </div>
-
-    <div class="col-xxxl-3 col-xxl-4 col-lg-7 col-md-6">
-    </div>
-
-    <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
-
-    </div>
-
-    <div class="col-xxxl-3 col-xxl-4 col-md-5">
-    </div>
-
-  </div>
 </div>

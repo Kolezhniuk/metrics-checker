@@ -1,41 +1,34 @@
-const esprima = require('esprima');
+
 // const hash = require('object-hash');
 const escomplex = require('escomplex');
 
-const TokenTypes = {
-  operator: 'Punctuator',
-  operand: 'Identifier',
-  keyword: 'Keyword',
-  function: 'function'
-};
-
 class MetrictsCalculator {
 
-  getHalsetadMetrics(fileName, programCode) {
-    const metrics = this.calculateHalsetadMetrics(programCode);
-    if(!metrics.aggregate.name){
-      metrics.aggregate["name"] = fileName;
+    getHalsetadMetrics(fileName, programCode) {
+        const metrics = this.calculateHalsetadMetrics(programCode);
+        if (!metrics.aggregate.name) {
+            metrics.aggregate["name"] = fileName;
+        }
+        return metrics;
     }
-    return metrics;
-  }
 
-  processInitialMetrics(tokens, filterType, options) {
-    const operators = tokens.filter(item => item.type === filterType);
-    const uniqueOperators = [...new Set(operators.map(item => item.value))];
-    return {
-      unique: uniqueOperators.length,
-      total: operators.length
-    };
-  }
+    // processInitialMetrics(tokens, filterType, options) {
+    //     const operators = tokens.filter(item => item.type === filterType);
+    //     const uniqueOperators = [...new Set(operators.map(item => item.value))];
+    //     return {
+    //         unique: uniqueOperators.length,
+    //         total: operators.length
+    //     };
+    // }
+    //
+    // removeComments(src) {
+    //     return src.replace(/\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$/gm, '$1');
+    // }
 
-  removeComments(src) {
-    return src.replace(/\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$/gm, '$1');
-  }
-
-  calculateHalsetadMetrics(programCode) {
-    const result = escomplex.analyse(programCode);
-    // result['hashCode'] = hash(programCode);
-    return result;
+    calculateHalsetadMetrics(programCode) {
+        const result = escomplex.analyse(programCode);
+        // result['hashCode'] = hash(programCode);
+        return result;
 
 
 //     programCode = this.removeComments(programCode);
@@ -79,7 +72,7 @@ class MetrictsCalculator {
 //       AST: JSON.stringify(AST.body),
 //       hashCode
 //     };
-  }
+    }
 }
 
 module.exports = new MetrictsCalculator();
