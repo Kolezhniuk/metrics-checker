@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class MetricsService {
@@ -7,13 +8,13 @@ export class MetricsService {
     constructor(private http: HttpClient) {
     }
 
-    getMetrics(code: string) {
+    getMetrics(url: string, code: string): Observable<any> {
         const headers = new HttpHeaders({
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         });
         const reqOption = {headers: headers};
-        return this.http.post('http://localhost:3000/api/getMetrics/css', {code: code}, reqOption);
+        return this.http.post(url, {code: code}, reqOption);
     }
 
     obtainCode(data: string) {
