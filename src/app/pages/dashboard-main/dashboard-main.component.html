@@ -2,7 +2,7 @@
     <div class="row border-danger" *ngIf="error">
         <div class="col-12 text-center text-danger pb-3">
             <div class="card border-danger">
-                <div class="card-header">Error</div>
+                <div class="card-header">{{error}}</div>
             </div>
         </div>
     </div>
@@ -18,9 +18,15 @@
                                   class="form-control">
                         </textarea>
                     </div>
-                    <button class="btn btn-sm btn-success text-center"
-                            (click)="onGetMetricsCLick()">Get Metric
-                    </button>
+                    <div class="row pt-3">
+                        <button class="btn btn-sm btn-outline-success m-auto"
+                                (click)="onGetMetricsCLick()">Get Metric
+                        </button>
+                        <button class="btn btn-sm btn-outline-info m-auto"
+                                (click)="onCompareCLick()">Compare
+                        </button>
+                    </div>
+
                 </nb-card-body>
             </nb-card>
         </div>
@@ -31,6 +37,14 @@
                     <ngx-json-viewer [expanded]="false" [json]="metrics"></ngx-json-viewer>
                 </nb-card-body>
             </nb-card>
+        </div>
+    </div>
+    <div class="row border-success" *ngIf="error">
+        <div class="col-12 pt-3">
+            <div class="card border-danger">
+                <div class="card-header">Results:</div>
+                <div class="card-body">Some Results:</div>
+            </div>
         </div>
     </div>
 </div>

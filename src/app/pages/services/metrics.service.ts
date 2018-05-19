@@ -4,25 +4,21 @@ import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class MetricsService {
+    headers = new HttpHeaders({
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    });
 
     constructor(private http: HttpClient) {
     }
 
     getMetrics(url: string, code: string): Observable<any> {
-        const headers = new HttpHeaders({
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        });
-        const reqOption = {headers: headers};
-        return this.http.post(url, {code: code}, reqOption);
+        return this.http.post(`http://localhost:3000/api/getMetrics/${url}`,
+            {code: code}, {headers: this.headers});
     }
 
-    obtainCode(data: string) {
-        const headers = new HttpHeaders({
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        });
-        const reqOption = {headers: headers};
-        return this.http.post('http://localhost:3000/api/obtaincode', {code: data}, reqOption);
+    compareCode(url: string, code: string): Observable<any> {
+        return this.http.post(`http://localhost:3000/compare-code/${url}`,
+            {code: code}, {headers: this.headers});
     }
 }

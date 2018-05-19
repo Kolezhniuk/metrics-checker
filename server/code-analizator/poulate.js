@@ -2,7 +2,7 @@ const wrapper = require('./elastic');
 
 const config = {
     usePopulation: true,
-    populationDirName: 'data/2010',
+    populationDirName: 'data/js',
     elastic: {
       index: 'halsetadindex',
       type: 'metrics'

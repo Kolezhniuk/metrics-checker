@@ -13,7 +13,6 @@ import {CommonModule} from '@angular/common';
         NgxJsonViewerModule,
         FormsModule,
         CommonModule,
-
     ],
     declarations: [
         DashboardJSComponent,

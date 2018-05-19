@@ -1,4 +1,6 @@
 const Analyzer = require('analyze-css');
+const csstree = require('css-tree');
+const hash = require('object-hash');
 
 class CSSAnalyzer {
 
@@ -8,7 +10,8 @@ class CSSAnalyzer {
                 if (err) {
                     reject(err);
                 }
-                console.log(result);
+                const AST = csstree.parse(code);
+                result['hashCode'] = hash(AST);
                 delete result['generator'];
                 delete result['offenders'];
                 resolve(result);

@@ -46,6 +46,8 @@
     "bootstrap": "4.0.0",
     "classlist.js": "1.1.20150312",
     "core-js": "2.5.1",
+    "cors": "^2.8.4",
+    "css-tree": "^1.0.0-alpha.28",
     "escomplex": "^2.0.0-alpha",
     "font-awesome": "4.7.0",
     "intl": "1.2.5",

@@ -10,7 +10,7 @@ const cssMetrics =require('../code-analizator/metric-css');
 
 const config = {
   usePopulation: false,
-  populationDirName: 'data/2010',
+  populationDirName: 'data/js',
   elastic: {
     index: 'halsetadindex',
     type: 'metrics'
@@ -55,7 +55,7 @@ router.post('/getMetrics/css', (req, res) => {
         .catch(err => res.send(err, 500));
 });
 
-router.post('/obtaincode', (req, res) => {
+router.post('/compare-code', (req, res) => {
   const code = req.body.code;
   const result = jsMetrics.getHalsetadMetrics('testName', code);
   res.send(200).json(result);

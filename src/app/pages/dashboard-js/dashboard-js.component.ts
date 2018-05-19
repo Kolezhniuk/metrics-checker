@@ -1,6 +1,6 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {MetricsService} from '../services/metrics.service';
-import {DashboardMainComponent} from "../dashboard-main/dashboard-main.component";
+import {DashboardMainComponent} from '../dashboard-main/dashboard-main.component';
 
 @Component({
     selector: 'ngx-dashboard',
@@ -12,7 +12,7 @@ export class DashboardJSComponent extends DashboardMainComponent {
         super(metricService);
         this.editorHeader = 'JavaScript Code:';
         this.metricHeader = 'Javascript Metric';
-        this.url = 'http://localhost:3000/api/getMetrics/js';
+        this.urlSuffix = 'js';
     }
 }
 

@@ -14,7 +14,9 @@ export class DashboardMainComponent implements OnInit {
     code: string;
     metrics: any;
     error: string;
-    url: string;
+    urlSuffix: string;
+    compareResults: any;
+
 
     constructor(protected metricService: MetricsService) {
     }
@@ -24,7 +26,7 @@ export class DashboardMainComponent implements OnInit {
 
     onGetMetricsCLick() {
         if (this.code) {
-            this.metricService.getMetrics(this.url, this.code).subscribe(result => {
+            this.metricService.getMetrics(this.urlSuffix, this.code).subscribe(result => {
                 this.metrics = result;
                 this.isLoaded = true;
                 this.error = '';
@@ -35,6 +37,17 @@ export class DashboardMainComponent implements OnInit {
             });
         } else {
             this.error = 'Enter code';
+
         }
+    }
+
+    onCompareCLick() {
+        this.metricService.compareCode(this.urlSuffix, this.code).subscribe(data => {
+            this.compareResults = data;
+            this.isLoaded = true;
+        }, () => {
+            this.isLoaded = false;
+            this.error = 'Error parsing code or during request to server';
+        });
     }
 }

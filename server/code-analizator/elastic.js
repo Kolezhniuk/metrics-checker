@@ -27,8 +27,6 @@ class ElasticApiWrapper {
       const fileData = await fileUtils.readFiles(fileNames);
       const parsedData = fileData.map(file => metricsCalculator.getHalsetadMetrics(file.name, file.content));
       const preparedData = this.prepareDataForElastic(parsedData);
-      // const bulk = bluebird.promisify(client.bulk);
-      // const resp = await bulk({body: preparedData});
       client.bulk({body: preparedData}, (err, resp) => {
         if (err) {
           console.log('bulkInitialData');
@@ -41,7 +39,6 @@ class ElasticApiWrapper {
 
 
   prepareDataForElastic(data) {
-    // console.log(data);
     return data.reduce((acc, cur, index) => {
       let documentIndex = {index: {_index: 'halsetadindex', _type: 'metrics', _id: (index + 1)}};
       acc.push(documentIndex);
