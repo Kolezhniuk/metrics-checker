@@ -1,0 +1,141 @@
+body {
+    margin:0;
+    padding: 0;
+    background-color:#9ca956 ;
+    min-width: 900px;
+    font-family: 'Arial',Gadget, sans-serif ;
+}
+.width {
+    width: 100%;
+    min-width: 875px;
+}
+* html .minwidth {
+    padding-left: 875px;
+}
+.minwidth, .container, .layout {
+    height: 1px;
+}
+* html .container {
+    margin-left: -875px;
+    position: relative;
+}
+#B12{ overflow:hidden;width: 100%;}
+#B1{
+    background-color:#887777 ;
+    width:250px;
+    text-align: left;
+    padding: 10px;
+    float: left;
+}
+#B2{background-color:#61849e;
+    margin-left:250px;
+    text-align: center;
+    padding: 10px;
+}
+#B1,#B2{padding-bottom:40000px;
+    margin-bottom:-40000px;}
+#B3{
+    text-align: center;
+    background-color:#cdb132;
+    padding: 5px;
+}
+#B456{overflow: hidden; width: 100%;}
+#B4{
+    background-color:#6f9171;
+    text-align: left;
+    padding: 10px;
+    margin-right: 740px;
+}
+#B5{
+    background-color:#8f7a70;
+    width: 350px;
+    text-align: center;
+    padding: 10px;
+    float: right;
+}
+#B6{
+    background-color: #837c80;
+    text-align: center;
+    width:350px;
+    padding: 10px;
+    float: right;
+
+}
+#B4,#B5,#B6{padding-bottom:40000px; margin-bottom:-40000px;}
+#B789{overflow:hidden;
+    width: 100%;}
+#B7{
+    background-color:#999266;
+    margin-right:740px;
+    text-align: left;
+    padding: 10px;
+
+}
+#B8{
+    background-color:#8d7288;
+    float: right;
+    width: 350px;
+    text-align: center;
+    padding: 10px;
+}
+#B9{
+    background-color:#83a25e;
+    text-align: center;
+    width:350px;
+    padding: 10px;
+    float: right;
+}
+
+#B7,#B8,#B9{padding-bottom:40000px; margin-bottom:-40000px;}
+@media screen and (max-device-width: 800px)
+{
+    body{
+        min-width: 200px;
+    }
+    .minwidth {
+        padding-left: 0px;
+    }
+    .width {
+        min-width: 200px;
+    }
+
+    .container {
+        margin-left: 0px;
+    }
+
+
+    #B1,#B2{
+        width: 100%;
+        margin: 0;
+        padding: 10px;}
+    #B2{
+        text-align: left;
+        background-color:#61849e;
+    }
+    #B4,#B7{width:100%;}
+    #B4{
+        padding: 0;
+        margin: 0;
+        float: none;
+    }
+    #B456 {display: table; width: 100%; }
+
+    #B6 {display: table-footer-group; }
+    #B5 {display: table-row-group;    }
+    #B4 {display: table-header-group;padding: 10px; }
+
+    #B5,#B6,#B8,#B9{
+        width:100%;
+        margin: 0;
+        padding: 0;float: none;
+    }
+    #B7{padding:0;
+        background-color:#6a6f95;
+        float: none;
+    }
+    #B789 {display: table; width: 100%; }
+
+    #B9 {display: table-footer-group; }
+    #B8 {display: table-row-group;    }
+    #B7 {display: table-header-group; }
+}

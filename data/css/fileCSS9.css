@@ -1,0 +1,133 @@
+p {
+    padding: 10px;
+}
+
+.width {
+    min-width: 875px;
+}
+
+.minwidth {
+    padding-left: 875px;
+}
+
+.content {
+    margin-left: -875px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+    background: white;
+}
+
+.block1 {
+    width: 100%;
+    background: #ccf;
+}
+
+.first2, .second, .third, .four, .five {
+    padding-bottom: 20em;
+    margin-bottom: -20em;
+}
+
+.first1 {
+    width: 350px;
+    float: left;
+    background-color: #ccf;
+    text-align: left;
+    padding: 0px;
+}
+
+.first2 {
+    margin-left: 350px;
+    background-color: white;
+    text-align: right;
+}
+
+.second {
+    width: 30%;
+    background-color: #9c9;
+    float: left;
+}
+
+.third {
+    background-color: #ffc;
+    float: right;
+    width: 70%;
+    margin-top: 0;
+}
+
+.four {
+    float: left;
+    width: 30%;
+    background-color: #fcc;
+}
+
+.five {
+    background-color: #ff006e;
+    width: 70%;
+    float: right;
+}
+
+.container1, .container2, .bottom {
+    width: 100%;
+    overflow: hidden;
+    text-align: center;
+}
+
+.container1 {
+    background: #ffc;
+}
+
+.container2 {
+    background-color: #ff006e;
+}
+
+.bottom {
+    background-color: #e9e66d;
+}
+
+@media screen and (max-device-width: 800px) {
+    .minwidth {
+        padding-left: 0px;
+    }
+
+    .width {
+        min-width: 200px;
+    }
+
+    .container, .content {
+        margin-left: 0px;
+    }
+
+    /*.firt1, .first2 {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }*/
+
+    p {
+        padding: 0.4em;
+    }
+}
+
+@media screen and (max-device-width:500px) {
+    p {
+        padding: 0.2em;
+    }
+
+    .second, .third, .four, .five, .bottom, .first1, .first2 {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .body {
+        background-color: #808080;
+    }
+
+    .width {
+        min-width: 100px;
+    }
+}

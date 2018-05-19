@@ -1,0 +1,151 @@
+body
+{font-weight:700;
+    margin:0;
+    min-width:700px;
+}
+div {
+    display:block;}
+
+.mylist
+{list-style-image:url(ice.png);}
+
+.furgon
+{width:100px;
+    border-radius:5px;}
+
+.whiteback
+{background-color:rgba(251, 247, 247, 0.8);
+    width:400px;
+    margin-left:130px;
+    color:#97024b;
+    padding:10px;
+}
+
+.all {
+    position:relative;
+}
+
+.left , .right
+{
+    width:50%;
+    z-index:1;
+}
+
+.left
+{ background-color:#fbe7e7;
+    left:0; }
+
+.right
+{background-color:#FFFFC1;
+    right:0;
+}
+
+.center
+{
+    width:700px;
+    margin-left:auto;
+    margin-right:auto;
+    z-index:3;
+    position:relative;
+    background-color:white;
+
+}
+
+.block3456 {
+    overflow:hidden;
+    width:100%;
+}
+
+.block3456  div {
+    text-align: left;
+
+}
+
+.block1, .block7, .block8 {
+    text-align:center;}
+
+.block1, .block3, .block4, .block5, .block6 , .block7, .block8
+{border-style:solid;
+    border-width:4px;
+    border-color:white;
+    overflow: hidden;
+}
+
+
+
+.block1
+{background-image:url(sl.jpg);
+    border-top-left-radius:15px;
+    border-top-right-radius:15px;}
+
+.block3 {background-color:#A6D1C8;
+
+}
+
+
+
+
+.block3
+{width: 225px;
+    padding:10px;
+    color:#0c4035;
+    height:260px;
+}
+
+.block4 {
+    background-color:#C7D5C8;
+    color:#0c4035;
+    width:225px;
+    padding:10px;
+    float:left;
+
+    padding-bottom: 20000px;
+    margin-bottom: -20000px;
+}
+
+.block5, .block7, .block8
+{color:#391904;}
+
+
+.left , .right
+{
+    position:absolute;
+    top:0;
+    bottom:0;
+}
+
+.block5, .block6
+{
+    padding-bottom: 20000px;
+    margin-bottom: -20000px;
+}
+
+
+
+
+.block5, .block6 {
+    margin-top:-287px;}
+.block5
+{width:241px;
+    background-color:#E7D6CF;
+    padding:10px;
+    float:left;
+    padding-bottom: 20000px;
+    margin-bottom: -20000px;
+}
+
+.block6
+{width:170px;
+    background-color:#EFBDC0;
+    color:#97024b;
+    float:right;
+}
+
+
+
+.block7
+{background-color:#ECDBBC;
+    clear:left;}
+
+.block8
+{background-color:#FEDCBA;}

@@ -1,0 +1,41 @@
+#header {
+    position: relative;
+    background: #00ff99;
+    z-index: 2;
+}
+
+#left-sidebar {
+    background: green;
+    width: 150px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+}
+#content {
+    background: red;
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
+#title-div {
+    width: 80%;
+    margin: auto;
+    background-color: #888888;
+}
+
+#right-sidebar {
+    background: #fff500;
+    width: 150px;
+    float: right;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+
+}
+#footer {
+    position: relative;
+    background: #ff7777;
+    z-index: 2;
+}

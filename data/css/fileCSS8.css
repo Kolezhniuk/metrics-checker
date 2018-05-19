@@ -1,0 +1,98 @@
+html, body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    min-height: 100px;
+}
+.content{
+    height:auto;
+    min-height:100%;
+    margin:auto;
+    width:1024px;
+    color:white;
+}
+div>.section,#article, #aside, #header, #copy, #umbrella{
+    padding:5px
+}
+#header{
+    background: #ff6a00;
+    height:auto;
+}
+.main {
+    width: 1024px;
+    margin:auto;
+}
+.rightback {
+    width: 100%;
+    float:left;
+    background:red;
+    overflow:hidden;
+    position:relative;
+}
+.contentback {
+    float:left;
+    background:#8a561d;
+    width: 100%;
+    position:relative;
+    right: 256px;    /* width of right sidebar */
+}
+.leftback {
+    width: 100%;
+    position:relative;
+    right: 384px; /* width of the content area */
+    float:left;
+    background:#208641;
+}
+#information {
+    float:left;
+    width: 374px;
+    overflow:hidden;
+    position:relative;
+    left: 640px;
+}
+
+#article {
+    float:left;
+    width: 374px;
+    overflow:hidden;
+    position:relative;
+    left: 640px;
+}
+
+#aside {
+    float:left;
+    overflow:hidden;
+    width: 246px;
+    position:relative;
+    left: 640px;
+}
+#footer{
+    width:1024px;
+    margin:auto;
+}
+.rightfooter {
+    overflow:hidden;
+    background: #808080;
+    width: 100%;
+    position: relative;
+    float: left;
+}
+.leftfooter {
+    background: blue;
+    width: 100%;
+    position: relative;
+    float: left;
+    right:640px;
+}
+#umbrella {
+    left: 640px;
+    float: left;
+    width: 374px;
+    position: relative;
+}
+#copy {
+    position: relative;
+    left: 640px;
+    width: 630px;
+    float: left;
+}

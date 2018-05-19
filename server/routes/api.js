@@ -2,33 +2,33 @@ const express = require('express');
 const router = express.Router();
 const elastic = require('../code-analizator/elastic');
 const jsMetrics = require('../code-analizator/metrics-js');
-const cssMetrics =require('../code-analizator/metric-css');
+const cssMetrics = require('../code-analizator/metrics-css');
 
 // declare axios for making http requests
 // const axios = require('axios');
 // const API = 'https://jsonplaceholder.typicode.com';
 
 const config = {
-  usePopulation: false,
-  populationDirName: 'data/js',
-  elastic: {
-    index: 'halsetadindex',
-    type: 'metrics'
-  }
+    usePopulation: false,
+    populationDirName: 'data/js',
+    elastic: {
+        index: 'halsetadindex',
+        type: 'metrics'
+    }
 };
 const query = {
-  index: config.elastic.index,
-  type: config.elastic.type,
-  body: {
-    query: {
-      match_all: {}
+    index: config.elastic.index,
+    type: config.elastic.type,
+    body: {
+        query: {
+            match_all: {}
+        }
     }
-  }
 };
 
 /* GET api listing. */
 router.get('/', (req, res) => {
-  res.send('api works');
+    res.send('api works');
 });
 
 // Get all posts
@@ -41,24 +41,24 @@ router.get('/', (req, res) => {
 
 router.post('/getMetrics/js', (req, res) => {
 
-  const metric = jsMetrics.calculateHalsetadMetrics(req.body.code);
-  if (metric) {
-    return res.json(metric);
-  }
-  return res.send("Metric calculation error");
+    const metric = jsMetrics.getJSMetrics({programCode: req.body.code});
+    if (metric) {
+        return res.json(metric);
+    }
+    return res.send("Metric calculation error");
 });
 
 router.post('/getMetrics/css', (req, res) => {
 
-    cssMetrics.CSSAnalyzer.analyze(req.body.code)
+    cssMetrics.analyze({programCode: req.body.code})
         .then(data => res.status(200).json(data))
         .catch(err => res.send(err, 500));
 });
 
 router.post('/compare-code', (req, res) => {
-  const code = req.body.code;
-  const result = jsMetrics.getHalsetadMetrics('testName', code);
-  res.send(200).json(result);
+    const code = req.body.code;
+    // const result = jsMetrics.getJSMetrics({fileNam'testName', code);
+    res.send(200).json(result);
 });
 
 module.exports = router;

@@ -1,0 +1,100 @@
+@charset "utf-8";
+
+body {
+    margin: 0px;
+    text-align: center;
+    background: #fff;
+    width: 100%;
+}
+
+.container {
+    background: #666;
+    width: 100%;
+    min-width: 900px;
+}
+
+.main {
+    margin: 0px auto;
+    width: 900px;
+    height: 600px;
+}
+
+.d2, .d4, .d5, .d6, .d7, .d8 {
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.d2 {
+    width: 100%;
+    height: 20%;
+    background: #abc456;
+    text-align: left;
+}
+
+.d4 {
+    width: 70%;
+    height: 30%;
+    background-color: #daaa23;
+    float: left;
+}
+
+.d5 {
+    width: 35%;
+    height: 50%;
+    background-color: #babcde;
+    float: left;
+}
+
+.d6 {
+    width: 35%;
+    height: 50%;
+    background-color: #fedcba;
+    float: left;
+}
+
+.d7 {
+    width: 30%;
+    height: 80%;
+    background-color: #77ccab;
+    float: right;
+}
+
+.d8 {
+    width: 100%;
+    background: #7f66c1;
+    min-width: 900px;
+}
+
+@media screen and (max-device-width: 480px) {
+
+    body {
+        margin: 0px auto;
+    }
+
+    .container, .main, .d2, .d4, .d5, .d6, .d7, .d8 {
+        min-width: 100%;
+        height: auto;
+        float: left;
+        text-align: left;
+    }
+}
+
+/*для ie-5 */
+#min-width {
+    width: 100%;
+    min-width: 900px;
+}
+
+* html .minwidth {
+    border-left: 900px solid #fff;
+    position: relative;
+    float: left;
+    z-index: 1;
+}
+
+* html .container2 {
+    margin-left: -900px;
+    position: relative;
+    float: left;
+    z-index: 2;
+}
