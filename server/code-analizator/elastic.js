@@ -16,20 +16,20 @@ class ElasticApiWrapper {
         if (config.usePopulation) {
             const fileNames = await fileWalker(config.populationDirName);
             const fileData = await fileUtils.readFiles(fileNames);
-            const parsedData = config.justCode ? fileData : this.obtainMetrics(fileData);
+            const parsedData = config.justCode ? fileData : this.obtainMetrics(fileData, config.elastic._type);
             const preparedData = this.prepareDataForElastic(parsedData, config);
             client.bulk({body: preparedData}, (err, resp) => {
                 if (err) {
                     throw new Error(err);
                 }
-                console.log("OKAY");
+                console.trace(resp);
             });
         }
     };
 
-    async obtainMetrics(fileData) {
+    async obtainMetrics(fileData, type) {
         let parsedData;
-        switch (config.elastic._type) {
+        switch (type) {
             case 'js':
                 parsedData = fileData
                     .map(file => {
@@ -79,19 +79,9 @@ class ElasticApiWrapper {
         });
     };
 
-    makeElasticSelect(query) {
-        return new Promise((resolve, reject) => {
-            let client = new elasticsearch.Client({
-                host: 'localhost:9200',
-                log: 'trace'
-            });
-            client.search(query).then((resp) => {
-                resolve(resp.hits.hits);
-            }, (err) => {
-                console.trace(err.message);
-                reject(err);
-            });
-        });
+    async makeElasticSelect(query) {
+        const resp = await client.search(query);
+        return resp.hits.hits;
     };
 }
 

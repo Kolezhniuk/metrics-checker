@@ -14,13 +14,3 @@ wrapper.ElasticApiWrapper.loadDataToElastic(config);
 config = Object.assign(config, {populationDirName: 'data/css', elastic: {_index: 'css', _type: 'css'}});
 wrapper.ElasticApiWrapper.loadDataToElastic(config);
 
-const query = {
-    index: 'jscode',
-    type: 'jscode',
-    body: {
-        query: {
-            match_all: {}
-        }
-    }
-};
-wrapper.ElasticApiWrapper.makeElasticSelect(query);

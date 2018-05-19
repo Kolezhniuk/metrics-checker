@@ -18,7 +18,7 @@ export class MetricsService {
     }
 
     compareCode(url: string, code: string): Observable<any> {
-        return this.http.post(`http://localhost:3000/compare-code/${url}`,
+        return this.http.post(`http://localhost:3000/api/compare-code/${url}`,
             {code: code}, {headers: this.headers});
     }
 }

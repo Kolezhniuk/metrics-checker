@@ -1,42 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const elastic = require('../code-analizator/elastic');
 const jsMetrics = require('../code-analizator/metrics-js');
 const cssMetrics = require('../code-analizator/metrics-css');
-
-// declare axios for making http requests
-// const axios = require('axios');
-// const API = 'https://jsonplaceholder.typicode.com';
-
-const config = {
-    usePopulation: false,
-    populationDirName: 'data/js',
-    elastic: {
-        index: 'halsetadindex',
-        type: 'metrics'
-    }
-};
-const query = {
-    index: config.elastic.index,
-    type: config.elastic.type,
-    body: {
-        query: {
-            match_all: {}
-        }
-    }
-};
+const comparator = require('../code-analizator/comparator');
 
 /* GET api listing. */
 router.get('/', (req, res) => {
     res.send('api works');
 });
-
-// Get all posts
-// router.get('/getMetrics', (req, res) => {
-//   elastic.ElasticApiWrapper.makeElasticSelect(query)
-//     .then(records =>  res.status(200).json(records.map(record => record._source)))
-//     .catch(error => res.status(500).send(error))
-// });
 
 
 router.post('/getMetrics/js', (req, res) => {
@@ -55,10 +26,17 @@ router.post('/getMetrics/css', (req, res) => {
         .catch(err => res.send(err, 500));
 });
 
-router.post('/compare-code', (req, res) => {
+router.post('/compare-code/css', (req, res) => {
     const code = req.body.code;
+    const compareResult = comparator.compare(code, 'css');
+    res.send(200).json(compareResult);
+});
+
+router.post('/compare-code/js', (req, res) => {
+    // const code = req.body.code;
+
     // const result = jsMetrics.getJSMetrics({fileNam'testName', code);
-    res.send(200).json(result);
+    res.send(200).json('mock');
 });
 
 module.exports = router;
