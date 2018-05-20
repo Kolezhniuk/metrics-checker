@@ -39,12 +39,22 @@
             </nb-card>
         </div>
     </div>
-    <div class="row border-info" *ngIf="error">
+    <div class="row">
         <div class="col-12 pt-3">
-            <div class="card border-danger">
+            <div class="card border-info">
                 <div class="card-header">Results:</div>
-                <div class="card-body">Some Results:</div>
+                <div class="card-body">{{compareResults?.message}}</div>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 pt-3">
+            <nb-card>
+                <nb-card-header>Bar</nb-card-header>
+                <nb-card-body>
+                    <ngx-chartjs-bar></ngx-chartjs-bar>
+                </nb-card-body>
+            </nb-card>
         </div>
     </div>
 </div>

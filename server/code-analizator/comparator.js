@@ -42,8 +42,7 @@ class Comparator {
 
             }
         }
-        let filteredCodesMetrics = codesMetrics.filter(i => i.metrics);
-        return this.analyzeCssMetrics(filteredCodesMetrics, metricToCompare);
+        return this.analyzeCssMetrics(codesMetrics, metricToCompare);
     }
 
 
@@ -51,18 +50,17 @@ class Comparator {
 
     }
 
-    analyzeCssMetrics(filteredCodesMetrics, filteredMetricToCompare) {
+    analyzeCssMetrics(codesMetrics, metricToCompare) {
         let statistics = [];
-        for (let i = 0; i < filteredCodesMetrics.length; i++) {
-
-            let equalMetric = Object.keys(filteredCodesMetrics[i]).reduce((acc, cur) => {
-                const metric = filteredCodesMetrics[i];
-                if (metric[cur] && metric[cur] === filteredMetricToCompare[cur]) {
-                    acc[cur] = metric[cur];
+        for (let i = 0; i < codesMetrics.length; i++) {
+            let codeMetric = codesMetrics[i].metrics;
+            let equalMetric = Object.keys(codeMetric).reduce((acc, cur) => {
+                if (codeMetric[cur] && codeMetric[cur] === metricToCompare.metrics[cur]) {
+                    acc[cur] = codeMetric[cur];
                 }
                 return acc;
             }, {});
-            statistics.push({equalMetric, count: Object.keys(equalMetric).length});
+            statistics.push({equalMetric, count: Object.keys(equalMetric).length, name: codesMetrics[i].fileName});
         }
         if (!statistics.length) {
             return {
@@ -73,9 +71,9 @@ class Comparator {
         }
         let mostProbableStat = statistics.sort((a, b) => b.count - a.count)[0];
         return {
-            fromEditor: metricToCompare,
-            fromDb: mostProbableStat,
-            message: "The this code very similar with that:"
+            fromEditor: metricToCompare.metrics,
+            fromDb: mostProbableStat.equalMetric,
+            message: `The this code very similar with file: ${mostProbableStat.name}`
         }
     }
 }

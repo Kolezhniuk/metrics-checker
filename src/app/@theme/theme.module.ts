@@ -2,6 +2,7 @@ import {ModuleWithProviders, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {ChartModule} from 'angular2-chartjs';
 
 import {
     NbActionsModule,
@@ -21,7 +22,7 @@ import {
 
 import {NbSecurityModule} from '@nebular/security';
 
-import {FooterComponent, HeaderComponent,} from './components';
+import {ChartjsBarComponent, FooterComponent, HeaderComponent,} from './components';
 import {CapitalizePipe, RoundPipe, TimingPipe} from './pipes';
 import {SampleLayoutComponent} from './layouts/sample.layout';
 import {DEFAULT_THEME} from './styles/theme.default';
@@ -42,13 +43,14 @@ const NB_MODULES = [
     NbPopoverModule,
     NbContextMenuModule,
     NgbModule,
-    NbSecurityModule, // *nbIsGranted directive
+    NbSecurityModule,
 ];
 
 const COMPONENTS = [
     HeaderComponent,
     FooterComponent,
-    SampleLayoutComponent
+    SampleLayoutComponent,
+    ChartjsBarComponent
 ];
 
 const PIPES = [
@@ -69,7 +71,7 @@ const NB_THEME_PROVIDERS = [
 ];
 
 @NgModule({
-    imports: [...BASE_MODULES, ...NB_MODULES],
+    imports: [...BASE_MODULES, ...NB_MODULES, ChartModule],
     exports: [...BASE_MODULES, ...NB_MODULES, ...COMPONENTS, ...PIPES],
     declarations: [...COMPONENTS, ...PIPES],
 })

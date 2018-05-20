@@ -26,10 +26,10 @@ router.post('/getMetrics/css', (req, res) => {
         .catch(err => res.send(err, 500));
 });
 
-router.post('/compare-code/css', (req, res) => {
+router.post('/compare-code/css', async (req, res) => {
     const code = req.body.code;
-    const compareResult = comparator.compare(code, 'css');
-    res.send(200).json(compareResult);
+    const compareResult = await comparator.compare(code, 'css');
+    return res.status(200).json(compareResult);
 });
 
 router.post('/compare-code/js', (req, res) => {
