@@ -6,7 +6,7 @@ import {DashboardCssModule} from './dashboard-css/dashboard-css.module';
 import {PagesRoutingModule} from './pages-routing.module';
 import {ThemeModule} from '../@theme/theme.module';
 import {DashboardMainComponent} from './dashboard-main/dashboard-main.component';
-import {NgxJsonViewerModule} from "ngx-json-viewer";
+import {NgxJsonViewerModule} from 'ngx-json-viewer';
 
 const PAGES_COMPONENTS = [
     PagesComponent,
@@ -19,7 +19,7 @@ const PAGES_COMPONENTS = [
         ThemeModule,
         DashboardJsModule,
         DashboardCssModule,
-        NgxJsonViewerModule
+        NgxJsonViewerModule,
     ],
     declarations: [
         ...PAGES_COMPONENTS,

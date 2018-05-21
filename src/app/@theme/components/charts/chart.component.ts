@@ -1,20 +1,20 @@
-import {Component, OnDestroy} from '@angular/core';
+import {Component, Input, OnDestroy} from '@angular/core';
 import {NbThemeService, NbColorHelper} from '@nebular/theme';
 import {Chart} from 'chart.js';
-import {MetricsService} from "../../../pages/services/metrics.service";
 
 @Component({
     selector: 'ngx-chartjs-bar',
     template: `
-        <chart type="bar" [data]="data" [options]="options"></chart>
+        <chart type="bar" [data]="data"  style="display: block; height: 100%; width: 100%;" [options]="options"></chart>
     `,
 })
 export class ChartjsBarComponent implements OnDestroy {
+    @Input()
     data: any;
     options: any;
     themeSubscription: any;
 
-    constructor(private theme: NbThemeService, private metricService: MetricsService) {
+    constructor(private theme: NbThemeService) {
         // this.metricService
         this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
 

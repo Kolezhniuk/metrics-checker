@@ -36,9 +36,9 @@ class Comparator {
         const equalCode = codesMetrics.filter(i => i.hashCode === metricToCompare.hashCode);
         if (equalCode.length) {
             return {
-                fromEditor: metricToCompare,
-                fromDb: equalCode[0],
-                message: "Codes are equal"
+                fromEditor: metricToCompare.metrics,
+                fromDb: equalCode[0].metrics,
+                message: `Codes are equal to ${equalCode[0].fileName}`
 
             }
         }
@@ -51,29 +51,41 @@ class Comparator {
     }
 
     analyzeCssMetrics(codesMetrics, metricToCompare) {
+        const notFoundResp = {
+            fromEditor: null,
+            fromDb: null,
+            message: "All metrics of this code are different. Doesn't match anything..."
+        };
         let statistics = [];
         for (let i = 0; i < codesMetrics.length; i++) {
             let codeMetric = codesMetrics[i].metrics;
             let equalMetric = Object.keys(codeMetric).reduce((acc, cur) => {
-                if (codeMetric[cur] && codeMetric[cur] === metricToCompare.metrics[cur]) {
+                if (codeMetric[cur] === metricToCompare.metrics[cur]) {
                     acc[cur] = codeMetric[cur];
                 }
                 return acc;
             }, {});
-            statistics.push({equalMetric, count: Object.keys(equalMetric).length, name: codesMetrics[i].fileName});
+            statistics.push({
+                equalMetric,
+                count: Object.keys(equalMetric).length, index: i, name: codesMetrics[i].fileName
+            });
         }
-        if (!statistics.length) {
-            return {
-                fromEditor: metricToCompare,
-                fromDb: null,
-                message: "No one code metric aren't equal"
-            }
+        const mostProbableStat = statistics.sort((a, b) => b.count - a.count)[0];
+        if(!mostProbableStat.count){
+            return notFoundResp;
         }
-        let mostProbableStat = statistics.sort((a, b) => b.count - a.count)[0];
+        // const filteredMetricsToCompare = Object.keys(metricToCompare.metrics).reduce((acc, cur) => {
+        //     if (mostProbableStat.equalMetric[cur]) {
+        //         acc[cur] = metricToCompare.metrics[cur];
+        //     }
+        //     return acc;
+        // }, {});
         return {
             fromEditor: metricToCompare.metrics,
-            fromDb: mostProbableStat.equalMetric,
-            message: `The this code very similar with file: ${mostProbableStat.name}`
+            // fromEditor: filteredMetricsToCompare,
+            fromDb: codesMetrics[mostProbableStat.index].metrics,
+            // fromDb: mostProbableStat.equalMetric,
+            message: `The this code similar with file: ${mostProbableStat.name}`
         }
     }
 }
