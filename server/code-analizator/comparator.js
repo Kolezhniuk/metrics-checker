@@ -71,20 +71,12 @@ class Comparator {
             });
         }
         const mostProbableStat = statistics.sort((a, b) => b.count - a.count)[0];
-        if(!mostProbableStat.count){
+        if (!mostProbableStat.count) {
             return notFoundResp;
         }
-        // const filteredMetricsToCompare = Object.keys(metricToCompare.metrics).reduce((acc, cur) => {
-        //     if (mostProbableStat.equalMetric[cur]) {
-        //         acc[cur] = metricToCompare.metrics[cur];
-        //     }
-        //     return acc;
-        // }, {});
         return {
             fromEditor: metricToCompare.metrics,
-            // fromEditor: filteredMetricsToCompare,
             fromDb: codesMetrics[mostProbableStat.index].metrics,
-            // fromDb: mostProbableStat.equalMetric,
             message: `The this code similar with file: ${mostProbableStat.name}`
         }
     }
