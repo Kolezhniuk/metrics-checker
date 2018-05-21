@@ -19,10 +19,12 @@
                         </textarea>
                     </div>
                     <div class="row pt-3">
-                        <button class="btn btn-sm btn-outline-success m-auto"
+                        <button class="btn btn-sm btn-outline-primary m-auto"
+                                [disabled]="!code"
                                 (click)="onGetMetricsCLick()">Get Metric
                         </button>
-                        <button class="btn btn-sm btn-outline-info m-auto"
+                        <button class="btn btn-sm btn-outline-danger m-auto"
+                                [disabled]="!code"
                                 (click)="onCompareCLick()">Compare
                         </button>
                     </div>
