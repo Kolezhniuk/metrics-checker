@@ -35,11 +35,11 @@ export class DashboardCssComponent extends DashboardMainComponent {
                 datasets: [{
                     data: fromDbData,
                     label: 'Data from db',
-                    backgroundColor: 'blue',
+                    backgroundColor: '#65b2ff',
                 }, {
                     data: fromEditor,
                     label: 'Data from editor',
-                    backgroundColor: 'red',
+                    backgroundColor: '#ff657f',
                 }],
             },
             options: this.getOptions
