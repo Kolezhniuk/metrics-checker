@@ -14,7 +14,7 @@ export class DashboardCssComponent extends DashboardMainComponent {
      */
     keys = ['selectors', 'selectorsByAttribute',
         'selectorsByClass', 'selectorsById', 'selectorsByPseudo',
-        'colors', 'duplicatedSelectors', 'duplicatedProperties', 'rules'];
+        'colors', 'duplicatedSelectors', 'duplicatedProperties', 'rules', 'mediaQueries'];
 
     constructor(protected metricService: MetricsService) {
         super(metricService);
@@ -25,19 +25,21 @@ export class DashboardCssComponent extends DashboardMainComponent {
 
 
     prepareData() {
-        const labels = this.keys;
+
         const fromDbData = this.filterByKeys(this.compareResults.fromDb, this.keys);
+
         const fromEditor = this.filterByKeys(this.compareResults.fromEditor, this.keys);
+
         this.chart = new Chart('canvas', {
             type: 'horizontalBar',
             data: {
-                labels: labels,
+                labels: Object.keys(fromDbData),
                 datasets: [{
-                    data: fromDbData,
+                    data: Object.values(fromDbData),
                     label: 'Data from db',
                     backgroundColor: '#65b2ff',
                 }, {
-                    data: fromEditor,
+                    data: Object.values(fromEditor),
                     label: 'Data from editor',
                     backgroundColor: '#ff657f',
                 }],
@@ -49,9 +51,9 @@ export class DashboardCssComponent extends DashboardMainComponent {
     filterByKeys(props, filterKey) {
         return Object.keys(props).reduce((acc, cur) => {
             if (filterKey.includes(cur)) {
-                acc.push(props[cur]);
+                acc[cur] = props[cur];
             }
             return acc;
-        }, []);
+        }, {});
     }
 }
