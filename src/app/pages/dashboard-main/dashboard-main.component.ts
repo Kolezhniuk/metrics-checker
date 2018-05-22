@@ -45,7 +45,7 @@ export class DashboardMainComponent implements OnInit {
         }
     }
 
-    onCompareCLick() {
+    onCompareClick() {
         this.isLoaded = true;
         this.metricService.compareCode(this.urlSuffix, this.code).subscribe(data => {
             this.compareResults = data;

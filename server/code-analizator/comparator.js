@@ -62,10 +62,9 @@ class Comparator {
                 fromEditor: metricToCompare,
                 fromDb: equalCode[0],
                 message: `Code are equal to ${equalCode[0].fileName}`
-
             }
         }
-        this.analyzeJSMetrics(codesMetrics, metricToCompare);
+        return this.analyzeJSMetrics(codesMetrics, metricToCompare);
     }
 
     analyzeCssMetrics(codesMetrics, metricToCompare) {
@@ -130,7 +129,8 @@ class Comparator {
         return Object.keys(props).reduce((acc, cur) => {
             let isExclude = !!filterKey.filter(i => cur.includes(i)).length;
             if (!isExclude) {
-                acc[cur] = props[cur];
+                const prop = cur.replace('aggregate.','');
+                acc[prop] = props[cur];
             }
             return acc;
         }, {});

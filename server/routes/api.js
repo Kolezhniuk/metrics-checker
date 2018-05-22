@@ -34,8 +34,13 @@ router.post('/compare-code/css', async (req, res) => {
 
 router.post('/compare-code/js', async (req, res) => {
     const code = req.body.code;
-    const compareResult = await comparator.compare(code, 'js');
-    res.status(200).json(compareResult);
+    try {
+        const compareResult = await comparator.compare(code, 'js');
+        res.status(200).json(compareResult);
+
+    } catch (e) {
+        res.status(500).json('Error parsing code');
+    }
 });
 
 module.exports = router;
