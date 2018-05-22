@@ -32,11 +32,10 @@ router.post('/compare-code/css', async (req, res) => {
     return res.status(200).json(compareResult);
 });
 
-router.post('/compare-code/js', (req, res) => {
-    // const code = req.body.code;
-
-    // const result = jsMetrics.getJSMetrics({fileNam'testName', code);
-    res.send(200).json('mock');
+router.post('/compare-code/js', async (req, res) => {
+    const code = req.body.code;
+    const compareResult = await comparator.compare(code, 'js');
+    res.status(200).json(compareResult);
 });
 
 module.exports = router;

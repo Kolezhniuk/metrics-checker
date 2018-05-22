@@ -10,7 +10,7 @@ class JSAnalyzer {
         const AST = esprima.parse(programCode);
         metrics['hashCode'] = hash(AST);
         if (fileName) {
-            metrics.aggregate["name"] = fileName;
+            metrics["fileName"] = fileName;
         }
         return metrics;
     }
