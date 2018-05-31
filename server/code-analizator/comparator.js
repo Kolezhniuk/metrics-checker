@@ -8,6 +8,10 @@ class Comparator {
     constructor() {
     }
 
+   get exclude() {
+        return ['identifiers', 'functions'];
+   }
+
     get notFoundResp() {
         return {
             fromEditor: null,
@@ -57,11 +61,17 @@ class Comparator {
 
     compareJSMetrics(codesMetrics, metricToCompare) {
         const equalCode = codesMetrics.filter(i => i.hashCode === metricToCompare.hashCode);
+        const flattenDb = this.filterByExcludingKeys(FlatUtils.flatten(equalCode[0]), this.exclude);
+        const flattenEditor = this.filterByExcludingKeys(FlatUtils.flatten(metricToCompare), this.exclude);
+        delete flattenDb['hashCode'];
+        delete flattenDb['fileName'];
         if (equalCode.length) {
             return {
                 fromEditor: metricToCompare,
                 fromDb: equalCode[0],
-                message: `Code are equal to ${equalCode[0].fileName}`
+                message: `Code are equal to ${equalCode[0].fileName}`,
+                flattenDb,
+                flattenEditor
             }
         }
         return this.analyzeJSMetrics(codesMetrics, metricToCompare);
@@ -96,7 +106,7 @@ class Comparator {
     analyzeJSMetrics(codesMetrics, metricToCompare) {
         let statistics = [];
         let flattenMetricToCompare = FlatUtils.flatten(metricToCompare);
-        const exclude = ['identifiers', 'functions'];
+
         for (let i = 0; i < codesMetrics.length; i++) {
             let codeMetric = FlatUtils.flatten(codesMetrics[i]);
             let equalMetric = Object.keys(codeMetric).reduce((acc, cur) => {
@@ -114,8 +124,8 @@ class Comparator {
         if (!mostProbableStat.count) {
             return this.notFoundResp;
         }
-        const flattenDb = this.filterByExcludingKeys(mostProbableStat.equalMetric, exclude);
-        const flattenEditor = this.filterByExcludingKeys(flattenMetricToCompare, exclude);
+        const flattenDb = this.filterByExcludingKeys(mostProbableStat.equalMetric, this.exclude);
+        const flattenEditor = this.filterByExcludingKeys(flattenMetricToCompare, this.exclude);
         return {
             fromEditor: metricToCompare,
             fromDb: codesMetrics[mostProbableStat.index],
@@ -129,7 +139,7 @@ class Comparator {
         return Object.keys(props).reduce((acc, cur) => {
             let isExclude = !!filterKey.filter(i => cur.includes(i)).length;
             if (!isExclude) {
-                const prop = cur.replace('aggregate.','');
+                const prop = cur.replace('aggregate.', '');
                 acc[prop] = props[cur];
             }
             return acc;

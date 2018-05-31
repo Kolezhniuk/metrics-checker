@@ -17,7 +17,6 @@ export class DashboardJSComponent extends DashboardMainComponent {
     }
 
     prepareData() {
-        debugger;
         const fromDbData = this.compareResults.flattenDb;
         console.log(fromDbData);
         const fromEditor = this.compareResults.flattenEditor;
