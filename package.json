@@ -20,7 +20,7 @@
     "lint:styles": "stylelint ./src/**/*.scss",
     "lint:ci": "npm run lint && npm run lint:styles",
     "e2e": "ng e2e",
-    "server": "node server.js",
+    "server": "node server/server.js",
     "elastic": "bash elastic/elasticsearch-5.5.3/bin/elasticsearch",
     "gen": "ng generate service metrics"
   },

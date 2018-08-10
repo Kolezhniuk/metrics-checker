@@ -1,6 +1,6 @@
 const wrapper = require('./elastic');
 
-let config = {
+let js_config = {
     usePopulation: true,
     justCode: true,
     populationDirName: 'data/js',
@@ -9,8 +9,17 @@ let config = {
         _type: 'js'
     }
 };
-wrapper.ElasticApiWrapper.loadDataToElastic(config);
+wrapper.ElasticApiWrapper.loadDataToElastic(js_config);
 //
-config = Object.assign(config, {populationDirName: 'data/css', elastic: {_index: 'css', _type: 'css'}});
-wrapper.ElasticApiWrapper.loadDataToElastic(config);
+
+let css_config = {
+    usePopulation: true,
+    justCode: true,
+    populationDirName: 'data/css',
+    elastic: {
+        _index: 'css',
+        _type: 'css'
+    }
+};
+wrapper.ElasticApiWrapper.loadDataToElastic(css_config);
 
